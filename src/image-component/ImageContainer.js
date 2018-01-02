@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PageControl from './../page-control/PageControl'
 import './ImageContainer.css'
 
 /* 
@@ -15,12 +16,11 @@ class ImageContainer extends Component {
      * page is the current page
      * tag is the tag used for seearch
      */
-    this.state = { 
-      images: [], 
-      page: 1, 
-      tag: 'dogs',
-      error: ''
-     };
+    this.state = {
+      images: [],
+      page: 1,
+      tag: 'dogs'
+    };
   }
 
   /* 
@@ -35,13 +35,16 @@ class ImageContainer extends Component {
       this.setState({ images: data.photos.photo })
     } catch (error) {
       console.log('The API key is probably outdated', error);
-    }    
+    }
   }
+
 
   render() {
     return (
-      <div> 
-        <ImageList images={this.state.images} />
+      <div>
+        <div className="columns is-multiline">
+          <ImageList images={this.state.images} lastPage={this.state.lastPage} />
+        </div>
         <PageControl handler={this.handlePageChange.bind(this)} page={this.state.page} />
       </div>
     );
@@ -52,10 +55,9 @@ class ImageContainer extends Component {
    * parameter: direction (number)
    * return: void
    */
-  async handlePageChange(direction) {
-    let newPage = this.state.page + direction;
-    if (newPage > 0) {
-      this.setState({ page: newPage }, await this.loadData(newPage))    
+  async handlePageChange(page) {
+    if (page > 0) {
+      this.setState({ page: page }, await this.loadData(page))
     }
   }
 
@@ -68,8 +70,6 @@ class ImageContainer extends Component {
   }
 }
 
-// functional components (could exist in their own files)
-
 /* 
  * ImageList Component 
  * Hold images and shows them as a list
@@ -78,37 +78,15 @@ class ImageContainer extends Component {
  */
 const ImageList = (props) => {
   const images = props.images;
-  const imgElements = images.map((img) =>
-    (
-      <div key={img.id} className="img" style={{backgroundImage: `url(https://farm${img.farm}.staticflickr.com/${img.server}/${img.id}_${img.secret}.jpg)`}}>
+  const imgElements = images.map((img) => (
+      <div className="column is-one-third" key={img.id}>
+        <div className="card img" style={{ backgroundImage: `url(https://farm${img.farm}.staticflickr.com/${img.server}/${img.id}_${img.secret}.jpg)` }}>
+        </div>
       </div>
     )
   );
   return imgElements;
 }
 
-/* 
- * PageControl Component
- * Used to control paging
- * props: handler function (the onClick event handler is passed from the parent, as the current page is stored in the state of the parent)
- */
-const PageControl = (props) => {
-  return (
-    <div className="box has-text-centered">
-      <button className="button is-primary is-large" onClick={props.handler.bind(this, -1)}>
-        <span className="icon">
-          <i className="fa fa-arrow-left"></i>
-        </span>
-      </button>
-      &nbsp;
-      <button className="button is-primary is-large" onClick={props.handler.bind(this, 1)}>
-        <span className="icon">
-          <i className="fa fa-arrow-right"></i>
-        </span>
-      </button>
-      <p>Page: {props.page}</p>
-    </div>
-  )
-}
 
 export default ImageContainer;

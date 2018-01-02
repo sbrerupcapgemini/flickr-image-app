@@ -12,15 +12,15 @@ class App extends Component {
       <div>
         <section className="hero is-info">
           <div className="hero-body">
-            <div className="container-fluid">
-              <h1 className="title">Flickr Image App</h1>
+            <div className="container">
+              <h1 className="title">Image App</h1>
             </div>
           </div>
         </section>
-        <section>
-        <div className="container">
-          <ImageContainer></ImageContainer>
-        </div>
+        <section className="section">
+          <div className="container">
+            <ImageContainer></ImageContainer>
+          </div>
         </section>
       </div>
     );
