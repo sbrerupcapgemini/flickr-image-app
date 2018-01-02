@@ -9,4 +9,4 @@ View example here: https://flickr-image-app.firebaseapp.com/
     npm start
 
 ## Errors
-If no images is shown it is probably because the API is outdated.
+If no images is shown it is probably because the API key is outdated.
