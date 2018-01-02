@@ -13,9 +13,3 @@ div .image-list {
   padding: .5em;
   display: inline-block;
 }
-
-div .buttons {
-  justify-content: center;
-  width: 100%;
-  padding: 1em;
-}

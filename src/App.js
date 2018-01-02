@@ -17,9 +17,11 @@ class App extends Component {
             </div>
           </div>
         </section>
+        <section>
         <div className="container">
           <ImageContainer></ImageContainer>
         </div>
+        </section>
       </div>
     );
   }

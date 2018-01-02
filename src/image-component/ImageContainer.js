@@ -94,12 +94,13 @@ const ImageList = (props) => {
  */
 const PageControl = (props) => {
   return (
-    <div className="buttons">
+    <div className="box has-text-centered">
       <button className="button is-primary is-large" onClick={props.handler.bind(this, -1)}>
         <span className="icon">
           <i className="fa fa-arrow-left"></i>
         </span>
       </button>
+      &nbsp;
       <button className="button is-primary is-large" onClick={props.handler.bind(this, 1)}>
         <span className="icon">
           <i className="fa fa-arrow-right"></i>
