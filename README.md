@@ -7,4 +7,4 @@ A simple image viewing application.
     npm start
 
 ## Errors
-If no images is shown it is probably because the API is outdated.
+If no images is shown it is probably because the API key is outdated.
