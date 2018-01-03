@@ -28,7 +28,7 @@ class ImageContainer extends Component {
    * parameter: page (number)
    * return: void 
   */
-  async loadData(page) {
+  loadData = async (page) => { 
     try {
       const res = await fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=dc99f3fadadc7ff3f7914ebaf554a30d&tags=${this.state.tag}&per_page=12&page=${page}&format=json&nojsoncallback=1`);
       const data = await res.json();
@@ -45,7 +45,7 @@ class ImageContainer extends Component {
         <div className="columns is-multiline">
           <ImageList images={this.state.images} lastPage={this.state.lastPage} />
         </div>
-        <PageControl handler={this.handlePageChange.bind(this)} page={this.state.page} />
+        <PageControl handler={this.handlePageChange} page={this.state.page} />
       </div>
     );
   }
@@ -55,7 +55,7 @@ class ImageContainer extends Component {
    * parameter: direction (number)
    * return: void
    */
-  async handlePageChange(page) {
+  handlePageChange = async (page) => {
     if (page > 0) {
       this.setState({ page: page }, await this.loadData(page))
     }

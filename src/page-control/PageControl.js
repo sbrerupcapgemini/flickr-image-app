@@ -11,7 +11,7 @@ const PageControl = (props) => {
       <div className="column">
         <nav className="pagination" aria-label="pagination">
           <PreviousButton page={props.page} handler={props.handler} />
-          <a className="pagination-next" onClick={props.handler.bind(this, props.page + 1)}>Next page</a>
+          <a className="pagination-next" onClick={() => props.handler(props.page + 1)}>Next page</a>
           <PageList page={props.page} handler={props.handler} />
         </nav>
       </div>
@@ -26,10 +26,10 @@ const PageControl = (props) => {
  */
 const PreviousButton = (props) => {
   if (props.page === 1) {
-    return (<a className="pagination-previous" disabled onClick={props.handler.bind(this, props.page-1)}>Previous</a>)
+    return (<a className="pagination-previous" disabled onClick={() => props.handler(props.page-1)}>Previous</a>)
   }
   else {
-    return (<a className="pagination-previous" onClick={props.handler.bind(this, props.page-1)}>Previous</a>)
+    return (<a className="pagination-previous" onClick={() => props.handler(props.page-1)}>Previous</a>)
   }
 }
 
@@ -44,13 +44,13 @@ const PageList = (props) => {
     return (
       <ul className="pagination-list">
       <li>
-        { props.page === 1 ? <a className="pagination-link is-current" aria-label="Goto page 1" onClick={props.handler.bind(this, 1)}>1</a> : <a className="pagination-link" aria-label="Goto page 1" onClick={props.handler.bind(this, 1)}>1</a> }
+        { props.page === 1 ? <a className="pagination-link is-current" aria-label="Goto page 1" onClick={() => props.handler(1)}>1</a> : <a className="pagination-link" aria-label="Goto page 1" onClick={() => props.handler(1)}>1</a> }
       </li>
       <li>
-        { props.page === 2 ? <a className="pagination-link is-current" onClick={props.handler.bind(this, 2)} aria-label={`Page 2`}>2</a> : <a className="pagination-link" onClick={props.handler.bind(this, 2)} aria-label={`Page 2`}>2</a> }
+        { props.page === 2 ? <a className="pagination-link is-current" onClick={() => props.handler(2)} aria-label="Page 2">2</a> : <a className="pagination-link" onClick={() => props.handler(2)} aria-label="Page 2">2</a> }
       </li>
       <li>
-        <a className="pagination-link" onClick={props.handler.bind(this, 3)} aria-label={`Page 3`}>3</a>
+        <a className="pagination-link" onClick={() => props.handler(3)} aria-label="Page 3">3</a>
       </li>
     </ul>
     )
@@ -59,19 +59,19 @@ const PageList = (props) => {
     return (
       <ul className="pagination-list">
       <li>
-        <a className="pagination-link" aria-label="Goto page 1" onClick={props.handler.bind(this, 1)}>1</a>
+        <a className="pagination-link" aria-label="Goto page 1" onClick={() => props.handler(1)}>1</a>
       </li>
       <li>
         <span className="pagination-ellipsis">&hellip;</span>
       </li>
       <li>
-        <a className="pagination-link" onClick={props.handler.bind(this, props.page-1)} aria-label={`Page ${props.page-1}`}>{props.page-1}</a>
+        <a className="pagination-link" onClick={() => props.handler(props.page-1)} aria-label={`Page ${props.page-1}`}>{props.page-1}</a>
       </li>
       <li>
         <a className="pagination-link is-current" aria-label={`Page ${props.page}`} aria-current="page">{props.page}</a>
       </li>
       <li>
-        <a className="pagination-link" onClick={props.handler.bind(this, props.page+1)} aria-label={`Page ${props.page+1}`}>{props.page+1}</a>
+        <a className="pagination-link" onClick={() => props.handler(props.page+1)} aria-label={`Page ${props.page+1}`}>{props.page+1}</a>
       </li>
     </ul>
     )
