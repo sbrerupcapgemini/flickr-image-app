@@ -30,7 +30,7 @@ class ImageContainer extends Component {
   */
   loadData = async (page) => { 
     try {
-      const res = await fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=dc99f3fadadc7ff3f7914ebaf554a30d&tags=${this.state.tag}&per_page=12&page=${page}&format=json&nojsoncallback=1`);
+      const res = await fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=4f1fedac31268a2c910db3d61a90e5dd&tags=${this.state.tag}&per_page=12&page=${page}&format=json&nojsoncallback=1`);
       const data = await res.json();
       this.setState({ images: data.photos.photo })
     } catch (error) {
